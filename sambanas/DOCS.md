@@ -1,4 +1,4 @@
-# Home Assistant Add-on: Samba NAS share
+# Home Assistant Add-on: Samba NAS NTFS share
 
 ## Installation
 
