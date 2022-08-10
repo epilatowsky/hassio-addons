@@ -34,7 +34,7 @@ function mount_disk() { # $1 disk $2 path $3 remote_mount
           if [ "$remote_mount" = true ] ; then
           ssh root@${ipaddress%/*} -p 22222 -o "StrictHostKeyChecking no" "if grep -qs '/mnt/data/supervisor/media/$disk ' /proc/mounts; then echo 'Disk $disk already mounted on host' ; else  mount -t auto $devpath/$disk /mnt/data/supervisor/media/$disk -o nosuid,relatime,noexec; fi" \
                && echo $path/$disk >> /tmp/remote_mount
-          fi || bashio::log.warning "Host Mount ${disk} Fail!" || :
+          fi || bashio::log.warning "Host Mount NTFS ${disk} Fail!" || :
           mount -t ntfs3 -o force $devpath/$disk $path/$disk -o nosuid,relatime,noexec \
           && echo $path/$disk >> /tmp/local_mount && bashio::log.info "Mount NTFS ${disk} Success!"
      fi
@@ -90,7 +90,7 @@ elif bashio::config.has_value 'moredisks'; then
      for disk in $MOREDISKS 
      do
          #bashio::log.info "Mount ${disk}"
-         mount_disk $disk $path $remote_mount && bashio::log.info "Success!" || bashio::log.warning "Fail to mount ${disk}!"   
+         mount_disk $disk $path $remote_mount && bashio::log.info "Success!" || bashio::log.warning "Fail to mount NTFS ${disk}!"   
      done
 
      echo $path > /tmp/mountpath 
