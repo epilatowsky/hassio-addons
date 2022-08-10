@@ -36,7 +36,7 @@ function mount_disk() { # $1 disk $2 path $3 remote_mount
                && echo $path/$disk >> /tmp/remote_mount
           fi || bashio::log.warning "Host Mount ${disk} Fail!" || :
           mount -t ntfs3 -o force $devpath/$disk $path/$disk -o nosuid,relatime,noexec \
-          && echo $path/$disk >> /tmp/local_mount && bashio::log.info "Mount ${disk} Success!"
+          && echo $path/$disk >> /tmp/local_mount && bashio::log.info "Mount NTFS ${disk} Success!"
      fi
 }
 
