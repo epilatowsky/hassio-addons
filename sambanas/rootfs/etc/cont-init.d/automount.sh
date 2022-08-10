@@ -35,7 +35,7 @@ function mount_disk() { # $1 disk $2 path $3 remote_mount
           ssh root@${ipaddress%/*} -p 22222 -o "StrictHostKeyChecking no" "if grep -qs '/mnt/data/supervisor/media/$disk ' /proc/mounts; then echo 'Disk $disk already mounted on host' ; else  mount -t auto $devpath/$disk /mnt/data/supervisor/media/$disk -o nosuid,relatime,noexec; fi" \
                && echo $path/$disk >> /tmp/remote_mount
           fi || bashio::log.warning "Host Mount ${disk} Fail!" || :
-          mount -t auto $devpath/$disk $path/$disk -o nosuid,relatime,noexec \
+          mount -t ntfs3 -o force $devpath/$disk $path/$disk -o nosuid,relatime,noexec \
           && echo $path/$disk >> /tmp/local_mount && bashio::log.info "Mount ${disk} Success!"
      fi
 }
