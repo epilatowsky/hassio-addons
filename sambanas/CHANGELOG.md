@@ -1,5 +1,9 @@
 # Changelog
 
+## 10.0.1-nas
+
+### ✨ Features
+- Add NTFS usig ntfs3 linux kernell driver
 ## 10.0.0-nas
 
 ### 💥 BREAKING CHANGE
